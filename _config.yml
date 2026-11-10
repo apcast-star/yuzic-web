@@ -1,0 +1,112 @@
+# Yuzic — site configuration
+#
+# What used to live here was a template's control panel: twenty colour keys,
+# a device-frame colour, header overlay transparencies. That is what a
+# re-skinnable fork needs and what a real site does not. Colours now live in
+# `_sass/_tokens.scss`, where they can also switch theme at runtime.
+#
+# What is left is content.
+
+app_name: Yuzic
+tagline: Your music, your way.
+app_description: >-
+  A free and open source music player for Navidrome, Jellyfin, Emby and other
+  Subsonic servers.
+
+# Store and source
+ios_app_id: 6740042497
+ios_app_country: us
+appstore_link: https://apps.apple.com/us/app/yuzic-navidrome-jellyfin/id6740042497
+playstore_link: https://play.google.com/store/apps/details?id=com.arinora.rawarr
+github_repo_url: https://github.com/yuzicapp/yuzic
+discord_link: https://discord.gg/NzsGEhg5Fs
+
+enable_smart_app_banner: true
+
+# Author
+your_name: Zachary Starnes
+your_link: https://www.aritools.xyz/
+email_address: zackhhi@gmail.com
+github_username: yuzicapp
+
+
+# Feature List — what the app does, in the app's own terms.
+features:
+
+  - title: One library, many servers
+    description: Navidrome, Jellyfin, Emby and Subsonic, merged.
+
+  - title: Its own audio engine
+    description: An audio graph built for Yuzic, not a stock player.
+
+  - title: Crossfade and gapless
+    description: With a mode that leaves segued albums alone.
+
+  - title: Ten-band equalizer
+    description: Plus replay gain, album or track.
+
+  - title: Offline downloads
+    description: Whole albums and playlists, with progress you can watch.
+
+  - title: CarPlay and Android Auto
+    description: At the quality you actually chose.
+
+  - title: Yours to arrange
+    description: Themes, accent colour, density, corners, columns.
+
+  - title: Reaches everyone
+    description: Screen reader labels throughout. Four languages.
+
+  - title: Privacy-first
+    description: No ads, no tracking. Every service off until you turn it on.
+
+
+# The repositories, named as they are on GitHub. The engine is its own project
+# with its own licence, and the site should say so rather than folding it into
+# the app.
+projects:
+  - name: yuzic
+    description: The app. React Native, GPL-3.0.
+    url: https://github.com/yuzicapp/yuzic
+  - name: yuzic-engine
+    description: The audio engine underneath it. Swift and Kotlin, Apache-2.0.
+    url: https://github.com/yuzicapp/yuzic-engine
+  - name: yuzic-web
+    description: This site. Jekyll, GPL-3.0.
+    url: https://github.com/yuzicapp/yuzic-web
+
+
+# Three groups, the same three the app's own docs use. Anything that is not a
+# server you connect or a downloader you send to is an integration.
+works_with:
+  - group: Servers
+    items: [Navidrome, Jellyfin, Emby, Subsonic]
+  - group: Integrations
+    items: [Last.fm, ListenBrainz, MusicBrainz, Deezer, AudioMuse-AI, AirPlay, DLNA / UPnP]
+  - group: Downloaders
+    items: [Lidarr, slskd, SoulSync]
+
+
+# Screenshots. Empty until there are current ones — the site showed a single
+# shot from January of an app that has changed since.
+screenshots: []
+
+
+####################################################
+### Jekyll Configuration. No need to touch this. ###
+####################################################
+
+sass:
+  style: compressed
+
+exclude:
+  - LICENSE
+  - README.md
+  - CNAME
+
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+
+markdown: kramdown

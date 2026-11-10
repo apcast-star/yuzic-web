@@ -1,0 +1,91 @@
+---
+layout: default
+---
+
+<section class="hero">
+  <div class="wrap hero__inner">
+    <img class="hero__icon" src="{{ '/assets/appicon.png' | relative_url }}" alt="{{ site.app_name }} app icon">
+    <h1 class="hero__title">{{ site.tagline }}</h1>
+    <p class="hero__lede">{{ site.app_description }}</p>
+
+    <div class="store-row">
+      <a class="store-btn store-btn--primary" href="{{ site.appstore_link }}">
+        {% include icon.html name="apple" %}
+        App Store
+      </a>
+      <a class="store-btn" href="{{ site.playstore_link }}">
+        {% include icon.html name="googleplay" %}
+        Google Play
+      </a>
+      <a class="store-btn" href="{{ site.github_repo_url }}">
+        {% include icon.html name="github" %}
+        Source
+      </a>
+    </div>
+
+    <p class="hero__note">Free and open source · GPL-3.0 · Bring your own server</p>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="wrap">
+    <h2 class="section__title">What it does</h2>
+
+    <div class="feature-grid">
+      {% for feature in site.features %}{% if feature.title %}
+      <div class="feature">
+        <h3 class="feature__title">{{ feature.title }}</h3>
+        <p class="feature__body">{{ feature.description }}</p>
+      </div>
+      {% endif %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+{% if site.screenshots and site.screenshots.size > 0 %}
+<section class="section" id="screenshots">
+  <div class="wrap">
+    <h2 class="section__title">A look</h2>
+    <div class="shots">
+      {% for shot in site.screenshots %}
+      <img class="shot" src="{{ shot.src | relative_url }}" alt="{{ shot.alt }}" loading="lazy">
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section" id="source">
+  <div class="wrap">
+    <h2 class="section__title">Open source</h2>
+    <div class="feature-grid">
+      {% for project in site.projects %}
+      <a class="feature feature--link" href="{{ project.url }}">
+        <h3 class="feature__title feature__title--icon">
+          {% include icon.html name="github" %}
+          <span>{{ project.name }}</span>
+        </h3>
+        <p class="feature__body">{{ project.description }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="servers">
+  <div class="wrap">
+    <h2 class="section__title">Works with</h2>
+    <div class="works">
+      {% for group in site.works_with %}
+      <div class="works__group">
+        <h3 class="works__label">{{ group.group }}</h3>
+        <div class="chip-row">
+          {% for item in group.items %}
+          <span class="chip">{{ item }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

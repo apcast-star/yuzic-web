@@ -1,0 +1,14 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+
+// The old entry point declared twenty Sass variables piped in from _config.yml
+// — every colour on the site was a config key, which is how a template stays
+// re-skinnable and how a real site ends up with no opinion. Yuzic has one
+// accent and two modes; those live in `_tokens.scss` as custom properties, so
+// the theme can switch at runtime instead of at build time.
+
+@import
+    "tokens",
+    "base",
+    "layout";

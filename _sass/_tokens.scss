@@ -1,0 +1,67 @@
+// The app's palette, not an approximation of it.
+//
+// These are the values in `constants/design.ts` — `onDark` verbatim, and the
+// default `themeColor`. The site and the app should not have two opinions
+// about what "one shade above black" is; the app already folded twelve greys
+// onto seven roles, and this is that list.
+
+:root {
+  --bg: #000;              // onDark.background
+  --surface: #111;         // onDark.surface — a card
+  --surface-2: #1a1a1a;    // onDark.surfaceElevated — a card on a card
+  --muted: #222;           // onDark.muted — chips, badges
+  --line: #333;            // onDark.border
+
+  --text: #fff;            // onDark.text
+  --text-dim: #aaa;        // onDark.subtext
+  --text-faint: #888;      // onDark.mutedText
+
+  --accent: #ff7f7f;       // settingsSlice default themeColor
+  --accent-strong: #ff9d9d;
+  --accent-dim: rgba(255, 127, 127, 0.13);
+  --on-accent: #111;
+
+  // radius.card is 12 and radius.lg is 16 in the app. The site keeps the same
+  // two, plus a pill, rather than inventing a web-only shape scale.
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --space-section: clamp(4.5rem, 11vh, 8rem);
+  --space-xl: 3rem;
+  --space-lg: 2rem;
+  --space-md: 1.25rem;
+  --space-sm: 0.75rem;
+  --space-xs: 0.4rem;
+
+  --measure: 68ch;
+  --page: 1080px;
+
+  // Inter Tight sits where the app's bold system titles sit — tight, neutral,
+  // no personality of its own — while Inter carries the prose. Space Grotesk
+  // was the wrong instinct: it has a voice, and the app does not.
+  --font-display: "Inter Tight", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  --shadow: none;
+}
+
+// Light is the app's light theme, which is a genuinely lighter surface set
+// rather than an inversion of the dark one.
+[data-theme="light"] {
+  --bg: #fff;
+  --surface: #f5f5f5;
+  --surface-2: #ededed;
+  --muted: #eaeaea;
+  --line: #e0e0e0;
+
+  --text: #000;
+  --text-dim: #555;
+  --text-faint: #888;
+
+  --accent: #e05f5f;
+  --accent-strong: #c94b4b;
+  --accent-dim: rgba(224, 95, 95, 0.1);
+  --on-accent: #fff;
+}

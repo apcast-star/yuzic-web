@@ -1,0 +1,404 @@
+// ── Site chrome ──────────────────────────────────────────────────────────────
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--bg) 84%, transparent);
+  backdrop-filter: saturate(1.4) blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-height: 58px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+.brand:hover { color: var(--text); }
+.brand img { width: 26px; height: 26px; border-radius: 7px; }
+
+.site-nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2.5vw, 1.5rem);
+}
+.site-nav a { color: var(--text-dim); font-size: 0.925rem; }
+.site-nav a:hover { color: var(--text); }
+
+// A control is a rounded rectangle and a chip is a pill — which is the split
+// the app already makes: the theme buttons in Appearance are rounded rects,
+// the equalizer presets are pills. Rounding a control to a circle borrowed
+// the wrong one.
+.theme-toggle {
+  background: var(--muted);
+  border: 0;
+  color: var(--text-dim);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: color 140ms ease, background 140ms ease;
+}
+.theme-toggle:hover { color: var(--text); background: var(--surface-2); }
+.theme-toggle svg { width: 16px; height: 16px; }
+.theme-toggle .icon-moon { display: none; }
+[data-theme="light"] .theme-toggle .icon-sun { display: none; }
+[data-theme="light"] .theme-toggle .icon-moon { display: block; }
+
+// ── Hero ─────────────────────────────────────────────────────────────────────
+//
+// Centred and close to full height, which is the shape of the portfolio's
+// intro: one statement, nothing competing with it, and the page starting
+// below the fold.
+
+.hero {
+  min-height: calc(100svh - 58px);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding-block: var(--space-xl) var(--space-section);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto;
+  height: 560px;
+  background: radial-gradient(closest-side, var(--accent-dim), transparent);
+  pointer-events: none;
+}
+
+.hero__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__icon {
+  width: 76px;
+  height: 76px;
+  border-radius: 18px;
+  margin-bottom: var(--space-lg);
+}
+
+.hero__title {
+  font-size: clamp(2.5rem, 7vw, 4.25rem);
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+}
+
+.hero__lede {
+  font-size: clamp(1rem, 1.9vw, 1.2rem);
+  color: var(--text-dim);
+  max-width: 52ch;
+  margin-bottom: var(--space-xl);
+}
+
+.hero__note {
+  margin-top: var(--space-lg);
+  color: var(--text-faint);
+  font-size: 0.875rem;
+}
+
+// ── Buttons ──────────────────────────────────────────────────────────────────
+
+.store-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+.section .store-row { justify-content: flex-start; }
+
+.store-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.72rem 1.2rem;
+  border-radius: var(--radius);
+  border: 0;
+  background: var(--muted);
+  color: var(--text);
+  font-weight: 550;
+  font-size: 0.95rem;
+  transition: background 140ms ease;
+}
+.store-btn:hover { color: var(--text); background: var(--surface-2); }
+.store-btn--primary { background: var(--accent); color: var(--on-accent); }
+.store-btn--primary:hover { background: var(--accent-strong); color: var(--on-accent); }
+.icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+// ── Sections ─────────────────────────────────────────────────────────────────
+//
+// A label above a card, which is how every screen in the app is laid out:
+// "General", then the card; "Audio", then the card.
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.section__label {
+  font-size: 0.8rem;
+  font-weight: 550;
+  color: var(--text-faint);
+  margin-bottom: var(--space-xs);
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-md);
+}
+
+.section__lede {
+  color: var(--text-dim);
+  max-width: var(--measure);
+  font-size: 1.02rem;
+}
+
+// ── Features ─────────────────────────────────────────────────────────────────
+//
+// Filled cards on black with the app's own corner radius, spaced apart —
+// not a hairline grid. The app has no outlined surfaces anywhere.
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+}
+
+.feature {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.feature--link {
+  color: inherit;
+  transition: background 140ms ease;
+}
+.feature--link:hover { background: var(--surface-2); color: inherit; }
+
+.feature__title {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+
+// A repository card leads with the mark, so the row reads as a list of things
+// on GitHub before any of the names are taken in.
+.feature__title--icon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.feature--link .icon { color: var(--text-dim); transition: color 140ms ease; }
+.feature--link:hover .icon { color: var(--text); }
+
+.feature__body {
+  color: var(--text-dim);
+  font-size: 0.925rem;
+  line-height: 1.6;
+}
+
+// ── Shots ────────────────────────────────────────────────────────────────────
+
+.shots {
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-block: var(--space-xl) var(--space-sm);
+  margin-inline: calc(-1 * clamp(1.25rem, 5vw, 2.5rem));
+  padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+.shot {
+  flex: 0 0 auto;
+  width: min(232px, 62vw);
+  scroll-snap-align: start;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+// ── Chips ────────────────────────────────────────────────────────────────────
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+// Grouped, because a flat row of fourteen put a music server and an audio
+// output beside each other and left the reader to sort them out. The label
+// carries the grouping; the chips stay the one shape they already were.
+.works {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+// Sized and tracked like the other headings on the page, a step under a
+// feature title so it reads as a label for the chips rather than competing
+// with the section heading above it.
+.works__label {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--text-dim);
+}
+
+.works__group .chip-row { margin-top: var(--space-sm); }
+
+.chip {
+  background: var(--muted);
+  color: var(--text-dim);
+  border-radius: var(--radius-pill);
+  padding: 0.42rem 0.95rem;
+  font-size: 0.875rem;
+}
+
+// ── Footer ───────────────────────────────────────────────────────────────────
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding-block: var(--space-xl);
+  color: var(--text-faint);
+  font-size: 0.9rem;
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.site-footer__links {
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+.site-footer__links a { color: var(--text-dim); }
+.site-footer__links a:hover { color: var(--text); }
+
+// ── Markdown pages ───────────────────────────────────────────────────────────
+
+.page { padding-block: var(--space-xl) var(--space-section); }
+
+.prose {
+  max-width: var(--measure);
+  color: var(--text-dim);
+  // A changelog carries version strings and the odd long URL; neither should
+  // be able to push the page sideways on a phone.
+  overflow-wrap: anywhere;
+}
+
+.prose pre {
+  overflow-x: auto;
+  background: var(--muted);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+}
+
+.prose img { border-radius: var(--radius); }
+
+.prose table {
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.prose h1 {
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  color: var(--text);
+  margin-bottom: var(--space-lg);
+}
+
+.prose h2 {
+  font-size: 1.4rem;
+  color: var(--text);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+}
+
+.prose h3 {
+  font-size: 1.05rem;
+  color: var(--text);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xs);
+}
+
+.prose h4 {
+  font-size: 0.9rem;
+  color: var(--text-faint);
+  font-weight: 550;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xs);
+}
+
+.prose p,
+.prose ul,
+.prose ol { margin-block: var(--space-sm); }
+.prose ul, .prose ol { padding-left: 1.25rem; }
+.prose li { margin-block: 0.3rem; }
+.prose strong { color: var(--text); font-weight: 600; }
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--muted);
+  border-radius: 6px;
+  padding: 0.1em 0.4em;
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin-block: var(--space-xl);
+}
+
+.prose blockquote {
+  margin: var(--space-md) 0;
+  padding-left: var(--space-md);
+  border-left: 2px solid var(--accent);
+  color: var(--text-dim);
+}
+
+@media (max-width: 640px) {
+  .site-nav a.is-optional { display: none; }
+}
